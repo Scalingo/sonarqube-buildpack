@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BUILD_DIR=$1
+
+cat <<EOF
+config_vars:
+  PATH: /build/sonarqube/bin/linux-x86-64:/usr/local/bin:/usr/bin:/bin
+default_process_types:
+  web: sh /app/sonarqube/boot.sh
+EOF

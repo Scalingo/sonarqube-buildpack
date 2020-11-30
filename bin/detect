@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "SonarQube"
+exit 0
