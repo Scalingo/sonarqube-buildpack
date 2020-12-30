@@ -13,7 +13,7 @@ if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x
 fi
 
-SONARQUBE_VERSION="${SONARQUBE_VERSION:-8.5.1.38104}"
+SONARQUBE_VERSION="${SONARQUBE_VERSION:-8.6.0.39681}"
 
 install_sonarqube() {
   local BUILD_DIR=${1}
@@ -33,12 +33,12 @@ install_sonarqube() {
   fi
 
   if [[ ! -f "$CACHE_DIR/$sonarqube_archive" ]]; then
-    echo -n "Downloading the SonarQube archive..."
+    echo -n "Downloading the SonarQube ${SONARQUBE_VERSION} archive..."
     curl --silent --fail --retry 3 --retry-delay 2 --connect-timeout 3 --max-time 30 --output ${CACHE_DIR}/${sonarqube_archive} "$sonarqube_url"
     echo " done"
     echo $SONARQUBE_VERSION > ${CACHE_DIR}/.sonarqube_version
   else
-    echo "Get the SonarQube archive from the cache"
+    echo "Get the SonarQube ${SONARQUBE_VERSION} archive from the cache"
   fi
 
   echo -n "Checking SonarQube archive checksum..."
