@@ -62,13 +62,17 @@ install_sonarqube() {
 
   # The folder should exist but we want to make sure it does
   mkdir -p $sonarqube_home/extensions/plugins
-  # Copy all JAR files from the plugins folder into the SonarQube dedicated folder
-  # https://docs.sonarqube.org/8.6/setup/install-plugin/
-  for plugin in $BUILD_DIR/plugins/*.jar; do
-    echo -n "Installing the plugin $(basename $plugin)..."
-    cp $plugin $sonarqube_home/extensions/plugins
-    echo " done"
-  done
+
+  if [ -d $BUILD_DIR/plugins ]; then
+    # Copy all JAR files from the plugins folder into the SonarQube dedicated folder
+    # https://docs.sonarqube.org/8.6/setup/install-plugin/
+    for plugin in $BUILD_DIR/plugins/*.jar; do
+      [ -f "$plugin" ] || continue
+      echo -n "Installing the plugin $(basename $plugin)..."
+      cp $plugin $sonarqube_home/extensions/plugins
+      echo " done"
+    done
+  fi
 }
 
 mkdir -p $CACHE_DIR
