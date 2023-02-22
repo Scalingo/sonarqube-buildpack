@@ -13,7 +13,7 @@ if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x
 fi
 
-SONARQUBE_BASE_URL="${SONARQUBE_BASE_URL:-https://binaries.sonarsource.com/Distribution/sonarqube}"
+SONARQUBE_EDITION="${SONARQUBE_EDITION:-}"
 SONARQUBE_VERSION="${SONARQUBE_VERSION:-8.9.5.50698}"
 
 install_sonarqube() {
@@ -22,8 +22,14 @@ install_sonarqube() {
 
   sonarqube_home="${BUILD_DIR}/sonarqube"
   sonarqube_dist="sonarqube-${SONARQUBE_VERSION}"
-  sonarqube_archive="${sonarqube_dist}.zip"
-  sonarqube_url="${SONARQUBE_BASE_URL}/${sonarqube_archive}"
+
+  if [ "$SONARQUBE_EDITION" = "developer" ] || [ "$SONARQUBE_EDITION" = "enterprise" ] || [ "$SONARQUBE_EDITION" = "datacenter" ]; then
+    sonarqube_archive="sonarqube-$SONARQUBE_EDITION-$SONARQUBE_VERSION.zip"
+    sonarqube_url="https://binaries.sonarsource.com/CommercialDistribution/sonarqube-$SONARQUBE_EDITION/${sonarqube_archive}"
+  else
+    sonarqube_archive="sonarqube-$SONARQUBE_VERSION.zip"
+    sonarqube_url="https://binaries.sonarsource.com/Distribution/sonarqube/${sonarqube_archive}"
+  fi
 
   if [[ -f "$CACHE_DIR/.sonarqube_version" ]]; then
     old_version=$(cat $CACHE_DIR/.sonarqube_version)
