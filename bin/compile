@@ -52,6 +52,7 @@ install_sonarqube() {
 
   echo -n "Extracting the SonarQube archive..."
   unzip -qq $CACHE_DIR/$sonarqube_archive -d $BUILD_DIR
+  ls -al ${BUILD_DIR}
   mv ${BUILD_DIR}/${sonarqube_dist} $sonarqube_home
   echo " done"
 
