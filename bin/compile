@@ -13,9 +13,9 @@ if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x
 fi
 
-apt-get update
-apt-get install default-jre
-java -version
+sudo apt-get update
+sudo apt-get install default-jre
+sudo java -version
 
 SONARQUBE_EDITION="${SONARQUBE_EDITION:-}"
 SONARQUBE_VERSION="${SONARQUBE_VERSION:-8.9.5.50698}"
