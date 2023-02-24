@@ -3,8 +3,6 @@
 # SONAR_PROPERTIES="/app/sonarqube/conf/sonar.properties"
 # sed --in-place "s/.*sonar.web.host=.*/sonar.web.host=0.0.0.0/g" $SONAR_PROPERTIES
 
-SONAR_JAVA_PATH="/app/.jdk/bin/java"
-
 DB_HOSTNAME=$(echo $SCALINGO_POSTGRESQL_URL | cut -d "@" -f2 | cut -d ":" -f1)
 DB_PORT=$(echo $SCALINGO_POSTGRESQL_URL | cut -d ":" -f4 | cut -d "/" -f 1)
 DB_PASSWORD=$(echo $SCALINGO_POSTGRESQL_URL | cut -d "@" -f1 | cut -d ":" -f3)
@@ -21,6 +19,7 @@ export SONAR_WEB_HOST=0.0.0.0
 export SONAR_WEB_PORT="$PORT"
 
 export SONAR_TELEMETRY_ENABLE="false"
+export SONAR_JAVA_PATH="/app/.jdk/bin/java"
 
 touch /app/sonarqube/logs/es.log
 touch /app/sonarqube/logs/ce.log
