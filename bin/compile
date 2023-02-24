@@ -16,9 +16,6 @@ fi
 SONARQUBE_EDITION="${SONARQUBE_EDITION:-}"
 SONARQUBE_VERSION="${SONARQUBE_VERSION:-8.9.5.50698}"
 
-echo java -version
-which java
-
 install_sonarqube() {
   local BUILD_DIR=${1}
   local CACHE_DIR=${2}
