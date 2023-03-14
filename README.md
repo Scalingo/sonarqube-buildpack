@@ -10,6 +10,13 @@ By default we're installing the version of SonarQube declared in the [`bin/compi
 $ scalingo env-set SONARQUBE_VERSION=8.1.0.31237
 ```
 
+You can also set the base URL of SonarQube. That way, you can install the developer edition path for SonarQube. 
+
+```console
+$ scalingo env-set SONARQUBE_VERSION=developer-9.9.0.65466
+$ scalingo env-set SONARQUBE_BASE_URL=https://binaries.sonarsource.com/CommercialDistribution/sonarqube-developer
+```
+
 ## Configuration
 
 The buildpack is expecting a PostgreSQL database to be reachable at the URL specified in the `SCALINGO_POSTGRESQL_URL`.

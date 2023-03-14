@@ -19,6 +19,7 @@ export SONAR_WEB_HOST=0.0.0.0
 export SONAR_WEB_PORT="$PORT"
 
 export SONAR_TELEMETRY_ENABLE="false"
+export SONAR_JAVA_PATH="/app/.jdk/bin/java"
 
 touch /app/sonarqube/logs/es.log
 touch /app/sonarqube/logs/ce.log
