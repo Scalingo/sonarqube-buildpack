@@ -13,7 +13,7 @@ if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x
 fi
 
-SONARQUBE_VERSION="${SONARQUBE_VERSION:-"25.3.0.104237"}"
+SONARQUBE_VERSION="${SONARQUBE_VERSION:-"25.4.0.105899"}"
 
 install_sonarqube() {
   local BUILD_DIR=${1}
