@@ -62,6 +62,7 @@ install_sonarqube() {
   mkdir --parent "${BUILD_DIR}/.openjdk"
   jre="$( find "${BUILD_DIR}/sonarqube/jres" -iname "OpenJDK*jre_x64_linux*.tar.gz" )"
   tar --gzip --extract --file="${jre}" --directory="${BUILD_DIR}/.openjdk" --strip-components=1
+  echo " done"
 
   echo -n "Copying the vendored scripts from the buildpack..."
   # Copy the vendored boot script for launching the WAR
