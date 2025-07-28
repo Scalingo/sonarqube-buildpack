@@ -7,13 +7,17 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 basedir="$( cd -P "$( dirname "$0" )" && pwd )"
 BUILDPACK_DIR="$(readlink -f ${basedir}/..)"
+
 source ${BUILDPACK_DIR}/lib/common.sh
+
+# shellcheck disable=SC1091
+source "${BUILDPACK_DIR}/VERSIONS"
 
 if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x
 fi
 
-SONARQUBE_VERSION="${SONARQUBE_VERSION:-"25.6.0.109173"}"
+SONARQUBE_VERSION="${SONARQUBE_VERSION:-"${SONARQUBE_DEFAULT_VERSION}"}"
 
 install_sonarqube() {
   local BUILD_DIR=${1}
