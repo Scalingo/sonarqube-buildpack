@@ -58,6 +58,11 @@ install_sonarqube() {
   mv ${BUILD_DIR}/${sonarqube_dist} $sonarqube_home
   echo " done"
 
+  echo -n "Extracting bundled OpenJDK..."
+  mkdir --parent "${BUILD_DIR}/.openjdk"
+  jre="$( find "${BUILD_DIR}/sonarqube/jres" -iname "OpenJDK*jre_x64_linux*.tar.gz" )"
+  tar --gzip --extract --file="${jre}" --directory="${BUILD_DIR}/.openjdk" --strip-components=1
+
   echo -n "Copying the vendored scripts from the buildpack..."
   # Copy the vendored boot script for launching the WAR
   cp ${BUILDPACK_DIR}/opt/boot.sh ${sonarqube_home}/
