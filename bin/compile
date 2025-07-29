@@ -7,13 +7,17 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 basedir="$( cd -P "$( dirname "$0" )" && pwd )"
 BUILDPACK_DIR="$(readlink -f ${basedir}/..)"
+
 source ${BUILDPACK_DIR}/lib/common.sh
+
+# shellcheck disable=SC1091
+source "${BUILDPACK_DIR}/VERSIONS"
 
 if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x
 fi
 
-SONARQUBE_VERSION="${SONARQUBE_VERSION:-"25.6.0.109173"}"
+SONARQUBE_VERSION="${SONARQUBE_VERSION:-"${SONARQUBE_DEFAULT_VERSION}"}"
 
 install_sonarqube() {
   local BUILD_DIR=${1}
@@ -52,6 +56,12 @@ install_sonarqube() {
   echo -n "Extracting the SonarQube archive..."
   unzip -qq $CACHE_DIR/$sonarqube_archive -d $BUILD_DIR
   mv ${BUILD_DIR}/${sonarqube_dist} $sonarqube_home
+  echo " done"
+
+  echo -n "Extracting bundled OpenJDK..."
+  mkdir --parent "${BUILD_DIR}/.openjdk"
+  jre="$( find "${BUILD_DIR}/sonarqube/jres" -iname "OpenJDK*jre_x64_linux*.tar.gz" )"
+  tar --gzip --extract --file="${jre}" --directory="${BUILD_DIR}/.openjdk" --strip-components=1
   echo " done"
 
   echo -n "Copying the vendored scripts from the buildpack..."
