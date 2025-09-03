@@ -7,7 +7,7 @@ platform.
 ## Defining the Version
 
 By default we're installing the version of SonarQube declared in the
-[`VERSIONS`][version] file. But if you want to use a specific version, you can
+[`versions.sh`][versions.sh] file. But if you want to use a specific version, you can
 define the environment variable `SONARQUBE_VERSION`:
 
 ```shell
@@ -28,4 +28,4 @@ To deploy SonarQube on Scalingo, click this button:
 
 
 [Scalingo]: https://www.scalingo.com/
-[version]: https://github.com/Scalingo/sonarqube-buildpack/blob/master/VERSIONS#L3
+[version]: https://github.com/Scalingo/sonarqube-buildpack/blob/master/versions.sh#L3
