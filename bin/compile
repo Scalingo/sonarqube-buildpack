@@ -11,7 +11,7 @@ BUILDPACK_DIR="$(readlink -f ${basedir}/..)"
 source ${BUILDPACK_DIR}/lib/common.sh
 
 # shellcheck disable=SC1091
-source "${BUILDPACK_DIR}/VERSIONS"
+source "${BUILDPACK_DIR}/versions.sh"
 
 if [ -n "$BUILDPACK_DEBUG" ]; then
     set -x

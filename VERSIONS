@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-SONARQUBE_DEFAULT_VERSION="25.7.0.110598"
